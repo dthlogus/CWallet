@@ -5,17 +5,20 @@ import modelos.entidades.Categoria;
 import modelos.interfaces.CategoriaDao;
 import modelos.persistencia.CategoriaDaoImpl;
 
-public class CategoriaControle implements CategoriaDao{
+public class CategoriaControle implements CategoriaDao {
+
     CategoriaDaoImpl categoriaDao = new CategoriaDaoImpl();
 
     @Override
     public void incluir(Categoria categoria) throws Exception {
         try {
             Categoria aux = categoriaDao.consultarPorId(categoria.getId());
-            if (aux == null) {
-                categoriaDao.incluir(categoria);
+            if (aux != null) {
+                throw new Exception("Este ID de categoria já existe no sistema!");
+            } else if (categoria.getNome().isEmpty()) {
+                throw new Exception("A descrição tem que ser preenchida");
             } else {
-                throw new Exception("Este ID de Banco já existe no sistema!");
+                categoriaDao.incluir(categoria);
             }
         } catch (Exception erro) {
             throw erro;
@@ -26,13 +29,15 @@ public class CategoriaControle implements CategoriaDao{
     public void alterar(Categoria categoria) throws Exception {
         try {
             Categoria aux = categoriaDao.consultarPorId(categoria.getId());
-            if(aux == null){
-                categoriaDao.incluir(categoria);
+            if (categoria.getNome().isEmpty()) {
+                throw new Exception("A descrição tem que ser preenchida");
+            } else {
+                categoriaDao.alterar(categoria);
             }
         } catch (Exception erro) {
             throw erro;
         }
-        categoriaDao.alterar(categoria);
+
     }
 
     @Override

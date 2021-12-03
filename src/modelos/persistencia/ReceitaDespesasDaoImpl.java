@@ -77,7 +77,6 @@ public class ReceitaDespesasDaoImpl implements ReceitaDespesasDao {
                 aux.setTipoReceita(TipoReceita.valueOf(vetorString[1]));
                 aux.setNome(vetorString[2]);
                 aux.setDataDaCompra(UtilReceitaDespesa.stringToDateDataDaCompra(vetorString[3]));
-                aux.setFormaDePagamento(vetorString[4]);
                 aux.setCategoria(Integer.parseInt(vetorString[5]));
                 aux.setParcelaAtual(Integer.parseInt(parcelas[0]));
                 aux.setParcela(Integer.parseInt(parcelas[1]));
@@ -112,7 +111,6 @@ public class ReceitaDespesasDaoImpl implements ReceitaDespesasDao {
                 aux.setTipoReceita(TipoReceita.valueOf(vetorString[1]));
                 aux.setNome(vetorString[2]);
                 aux.setDataDaCompra(UtilReceitaDespesa.stringToDateDataDaCompra(vetorString[3]));
-                aux.setFormaDePagamento(vetorString[4]);
                 aux.setCategoria(Integer.parseInt(vetorString[5]));
                 aux.setParcelaAtual(Integer.parseInt(parcelas[0]));
                 aux.setParcela(Integer.parseInt(parcelas[1]));

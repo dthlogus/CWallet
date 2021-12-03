@@ -1,11 +1,11 @@
 package modelos.entidades;
 
-public class Categoria {
+public class Categoria implements Comparable<Categoria>{
     
-    private int id;
+    private Integer id;
     private String nome;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -24,5 +24,11 @@ public class Categoria {
     @Override
     public String toString() {
         return getId() + ";" + getNome(); 
+    }
+
+    @Override
+    public int compareTo(Categoria categoria) {
+        int idComparador = ((Categoria) categoria).getId();
+        return this.id - idComparador;
     }
 }

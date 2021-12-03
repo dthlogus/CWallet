@@ -54,7 +54,7 @@ public class ReceitaDespesa extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jTextField6 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxFormaPagamento = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -226,9 +226,14 @@ public class ReceitaDespesa extends javax.swing.JFrame {
         jTextField6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 90, 400, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 400, -1));
+        jComboBoxFormaPagamento.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jComboBoxFormaPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFormaPagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFormaPagamentoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jComboBoxFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 400, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -325,6 +330,10 @@ public class ReceitaDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
+    private void jComboBoxFormaPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFormaPagamentoActionPerformed
+        
+    }//GEN-LAST:event_jComboBoxFormaPagamentoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -367,8 +376,8 @@ public class ReceitaDespesa extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonIncluir;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBoxFormaPagamento;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;

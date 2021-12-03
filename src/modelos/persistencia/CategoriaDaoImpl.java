@@ -2,9 +2,13 @@ package modelos.persistencia;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.JOptionPane;
 import modelos.entidades.Categoria;
 import modelos.interfaces.CategoriaDao;
 
@@ -12,6 +16,17 @@ public class CategoriaDaoImpl implements CategoriaDao{
     
     private String nomeDoArquivoNoDisco = "./ArquivoDeDados/Categoria.txt";
 
+    public CategoriaDaoImpl(){
+        try{
+            File arquivo = new File(nomeDoArquivoNoDisco);
+            if (!arquivo.exists()) {
+                arquivo.createNewFile();
+            }
+        } catch (Exception erro){
+            JOptionPane.showMessageDialog(null, "Erro ao criar o arquivo");
+        }
+    }
+    
     @Override
     public void incluir(Categoria categoria) throws Exception {
         try {
@@ -19,6 +34,7 @@ public class CategoriaDaoImpl implements CategoriaDao{
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(categoria.toString() + "\n");
             bw.close();
+            fw.close();
         } catch (Exception erro) {
             throw erro;
         }
@@ -98,6 +114,7 @@ public class CategoriaDaoImpl implements CategoriaDao{
                 categorias.add(aux);
             }
             br.close();
+            Collections.sort(categorias);
             return categorias;
         } catch (Exception erro) {
             throw erro;

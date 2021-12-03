@@ -5,17 +5,32 @@
  */
 package interfacesGraficas;
 
+import Controle.CategoriaControle;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelos.entidades.Categoria;
+
 /**
  *
  * @author mathe
  */
 public class Categorias extends javax.swing.JFrame {
 
+    CategoriaControle categoriaDao = new CategoriaControle();
+
     /**
      * Creates new form Categorias
      */
     public Categorias() {
         initComponents();
+        try {
+            mostrarListagem();
+        } catch (Exception ex) {
+            Logger.getLogger(Categorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -34,18 +49,20 @@ public class Categorias extends javax.swing.JFrame {
         jButtonExcluir = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        ConsultaPorId = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldID = new javax.swing.JTextField();
+        jTextFieldDescricao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCategoria = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1600, 900));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonEditar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButtonEditar.setText("Editar");
@@ -54,6 +71,7 @@ public class Categorias extends javax.swing.JFrame {
                 jButtonEditarActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 210, 180, -1));
 
         jButtonIncluir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButtonIncluir.setText("Confirmar");
@@ -62,22 +80,27 @@ public class Categorias extends javax.swing.JFrame {
                 jButtonIncluirActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonIncluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 180, -1));
 
         Listar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         Listar.setText("Listar");
+        Listar.setPreferredSize(new java.awt.Dimension(171, 33));
         Listar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ListarActionPerformed(evt);
             }
         });
+        jPanel1.add(Listar, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 352, 180, -1));
 
         jButtonExcluir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setPreferredSize(new java.awt.Dimension(171, 33));
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonExcluirActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 180, -1));
 
         jButtonSair.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButtonSair.setText("Sair");
@@ -86,46 +109,21 @@ public class Categorias extends javax.swing.JFrame {
                 jButtonSairActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 180, -1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 51));
         jLabel1.setText("C'Wallet");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 39, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonIncluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Listar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(64, 64, 64)
-                .addComponent(jButtonIncluir)
-                .addGap(50, 50, 50)
-                .addComponent(jButtonEditar)
-                .addGap(50, 50, 50)
-                .addComponent(Listar)
-                .addGap(50, 50, 50)
-                .addComponent(jButtonExcluir)
-                .addGap(50, 50, 50)
-                .addComponent(jButtonSair)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        ConsultaPorId.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        ConsultaPorId.setText("consultar pro ID");
+        ConsultaPorId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaPorIdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ConsultaPorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 180, -1));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -133,17 +131,17 @@ public class Categorias extends javax.swing.JFrame {
         jLabel2.setText("ID");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 400, -1));
+        jTextFieldID.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jPanel2.add(jTextFieldID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 400, -1));
 
-        jTextField3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 400, -1));
+        jTextFieldDescricao.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jPanel2.add(jTextFieldDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 400, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("Descrição");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -154,7 +152,7 @@ public class Categorias extends javax.swing.JFrame {
                 "Id", "Descrição"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableCategoria);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 1390, 730));
 
@@ -163,7 +161,7 @@ public class Categorias extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -177,25 +175,129 @@ public class Categorias extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        try {
+            if (jTextFieldID.getText().isEmpty() || jTextFieldID.getText() == " ") {
+                throw new Exception("Por favor preenchar o campo de ID");
+            }
+            if (jTextFieldDescricao.getText().isEmpty() || jTextFieldDescricao.getText().equals("")) {
+                throw new Exception("Digite algum valor no campo de descrição, por favor.");
+            }
+            String str = jTextFieldID.getText();
+            int id = Integer.parseInt(str);
+            Categoria categoria = categoriaDao.consultarPorId(id);
+            if (str.length() == 0) {
+                throw new Exception("O Identificador esta VAZIO!");
+            }
+            String nomeDaCategoria = jTextFieldDescricao.getText();
+            Categoria categoriaModificada = new Categoria();
+            categoriaModificada.setId(id);
+            categoriaModificada.setNome(nomeDaCategoria);
 
+            categoriaDao.alterar(categoriaModificada);
+            limparTela();
+            mostrarListagem();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
+        try {
+            Categoria categoria = new Categoria();
+            if (jTextFieldID.getText().isEmpty() || jTextFieldID.getText() == " ") {
+                throw new Exception("Por favor preenchar o campo de ID");
+            }
+            categoria.setId(Integer.parseInt(jTextFieldID.getText()));
+            categoria.setNome(jTextFieldDescricao.getText());
 
+            categoriaDao.incluir(categoria);
+            limparTela();
+            mostrarListagem();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
-    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
+    private void mostrarListagem() throws Exception {
+        try {
+            ArrayList<Categoria> listaDeCategorias = categoriaDao.listagem();
+            DefaultTableModel model = (DefaultTableModel) jTableCategoria.getModel();
+            model.setNumRows(0);
 
+            for (Categoria categoria : listaDeCategorias) {
+                String[] categoriaSeparada = new String[2];
+                categoriaSeparada[0] = categoria.getId() + "";
+                categoriaSeparada[1] = categoria.getNome();
+                model.addRow(categoriaSeparada);
+
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }
+
+    private void limparTela() {
+        jTextFieldID.setText("");
+        jTextFieldDescricao.setText("");
+    }
+
+    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
+        try {
+            mostrarListagem();
+        } catch (Exception ex) {
+            Logger.getLogger(Categorias.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ListarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-
+        try {
+            if(jTextFieldID.getText().isEmpty() || jTextFieldID.getText().equals(" ")){
+                throw new Exception("Por favor, adicione o ID");
+            }
+            int id = Integer.parseInt(jTextFieldID.getText());
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente exlcuir esse dado?") == 0) {
+                categoriaDao.apagarPorId(id);
+                limparTela();
+                mostrarListagem();
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void ConsultaPorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaPorIdActionPerformed
+        try {
+            String str = jTextFieldID.getText();
+            DefaultTableModel model = (DefaultTableModel) jTableCategoria.getModel();
+            model.setNumRows(0);
+            if (str.length() == 0) {
+                limparTela();
+                mostrarListagem();
+                throw new Exception("O Identificador esta VAZIO!");
+            }
+            int id = Integer.parseInt(str);
+            Categoria categoria = categoriaDao.consultarPorId(id);
+            if (categoria == null) {
+                limparTela();
+                mostrarListagem();
+                throw new Exception("Categoria não existe no sistema");
+            }
+            String[] categoriaSeparada = new String[2];
+            categoriaSeparada[0] = categoria.getId() + "";
+            categoriaSeparada[1] = categoria.getNome();
+            model.addRow(categoriaSeparada);
+            limparTela();
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+            
+        }
+    }//GEN-LAST:event_ConsultaPorIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,6 +335,7 @@ public class Categorias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ConsultaPorId;
     private javax.swing.JButton Listar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
@@ -244,8 +347,8 @@ public class Categorias extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable jTableCategoria;
+    private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldID;
     // End of variables declaration//GEN-END:variables
 }

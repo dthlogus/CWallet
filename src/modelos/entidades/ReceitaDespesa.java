@@ -11,7 +11,6 @@ public class ReceitaDespesa {
     private TipoReceita tipoReceita;
     private String nome;
     private Date dataDaCompra;
-    private String formaDePagamento;
     private Categoria categoria;
     private int parcela;
     private int parcelaAtual;
@@ -49,14 +48,6 @@ public class ReceitaDespesa {
 
     public void setDataDaCompra(Date dataDaCompra) {
         this.dataDaCompra = dataDaCompra;
-    }
-
-    public String getFormaDePagamento() {
-        return formaDePagamento;
-    }
-
-    public void setFormaDePagamento(String formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
     }
 
     public Categoria getCategoria() {
@@ -110,8 +101,8 @@ public class ReceitaDespesa {
 
     @Override
     public String toString() {
-        return getId() + ";" + getTipoReceita().getDescricao() + ";" + getNome() + ";" + getDataDaCompra() + ";"+
-               getFormaDePagamento() + ";" + getCategoria().getId() +";"+
+        return getId() + ";" + getTipoReceita().getDescricao() + ";" + getNome() + ";" + getDataDaCompra() + ";" 
+               + getCategoria().getId() +";"+
                getParcelaAtual() + "/" + getParcela() + ";" +
                this.valor.toString() + ";" + getTipoEntrada().getDescricao() + ";" + isRepetitivo();
     }
