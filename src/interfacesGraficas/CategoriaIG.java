@@ -17,19 +17,19 @@ import modelos.entidades.Categoria;
  *
  * @author mathe
  */
-public class Categorias extends javax.swing.JFrame {
+public class CategoriaIG extends javax.swing.JFrame {
 
     CategoriaControle categoriaDao = new CategoriaControle();
 
     /**
      * Creates new form Categorias
      */
-    public Categorias() {
+    public CategoriaIG() {
         initComponents();
         try {
             mostrarListagem();
         } catch (Exception ex) {
-            Logger.getLogger(Categorias.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoriaIG.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -59,6 +59,7 @@ public class Categorias extends javax.swing.JFrame {
         jTableCategoria = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Lista de Categorias");
         setMinimumSize(new java.awt.Dimension(1600, 900));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
@@ -246,7 +247,7 @@ public class Categorias extends javax.swing.JFrame {
         try {
             mostrarListagem();
         } catch (Exception ex) {
-            Logger.getLogger(Categorias.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoriaIG.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ListarActionPerformed
 
@@ -295,7 +296,6 @@ public class Categorias extends javax.swing.JFrame {
             limparTela();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
-            
         }
     }//GEN-LAST:event_ConsultaPorIdActionPerformed
 
@@ -316,20 +316,21 @@ public class Categorias extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaIG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaIG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaIG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoriaIG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Categorias().setVisible(true);
+                new CategoriaIG().setVisible(true);
             }
         });
     }

@@ -1,0 +1,5 @@
+1;Compras
+2;Lojas
+3;Carro
+4;Moto
+5;Energia

@@ -1,21 +1,31 @@
 package modelos.persistencia;
 
-import Util.UtilReceitaDespesa;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelos.entidades.ReceitaDespesa;
-import modelos.enumerator.TipoEntrada;
-import modelos.enumerator.TipoReceita;
 import modelos.interfaces.ReceitaDespesasDao;
 
 public class ReceitaDespesasDaoImpl implements ReceitaDespesasDao {
 
     private String nomeDoArquivoNoDisco = "./ArquivoDeDados/ReceitaDespesa.txt";
 
+    public ReceitaDespesasDaoImpl() {
+      try{
+            File arquivo = new File(nomeDoArquivoNoDisco);
+            if (!arquivo.exists()) {
+                arquivo.createNewFile();
+            }
+        } catch (Exception erro){
+            JOptionPane.showMessageDialog(null, "Erro ao criar o arquivo");
+        }
+    }
+    
     @Override
     public void incluir(ReceitaDespesa receitaDespesa) throws Exception {
         try {
@@ -72,17 +82,17 @@ public class ReceitaDespesasDaoImpl implements ReceitaDespesasDao {
             String linha = "";
             while ((linha = br.readLine()) != null) {
                 String vetorString[] = linha.split(";");
-                String parcelas[] = vetorString[6].split("/");
+                String parcelas[] = vetorString[5].split("/");
                 aux.setId(Integer.parseInt(vetorString[0]));
-                aux.setTipoReceita(TipoReceita.valueOf(vetorString[1]));
+                aux.setTipoReceita(vetorString[1]);
                 aux.setNome(vetorString[2]);
-                aux.setDataDaCompra(UtilReceitaDespesa.stringToDateDataDaCompra(vetorString[3]));
-                aux.setCategoria(Integer.parseInt(vetorString[5]));
+                aux.setDataDaCompra(vetorString[3]);
+                aux.setCategoria(vetorString[4]);
                 aux.setParcelaAtual(Integer.parseInt(parcelas[0]));
                 aux.setParcela(Integer.parseInt(parcelas[1]));
-                aux.setValor(new BigDecimal(vetorString[7]));
-                aux.setTipoEntrada(TipoEntrada.valueOf(vetorString[8]));
-                aux.setRepetitivo(Boolean.parseBoolean(vetorString[9]));
+                aux.setValor(new BigDecimal(vetorString[6]));
+                aux.setTipoEntrada(vetorString[7]);
+                aux.setRepetitivo(Boolean.parseBoolean(vetorString[8]));
                 if (aux.getId() == id) {
                     return aux;
                 }
@@ -106,17 +116,17 @@ public class ReceitaDespesasDaoImpl implements ReceitaDespesasDao {
             while ((linha = br.readLine()) != null) {
                 ReceitaDespesa aux = new ReceitaDespesa();
                 String vetorString[] = linha.split(";");
-                String parcelas[] = vetorString[6].split("/");
+                String parcelas[] = vetorString[5].split("/");
                 aux.setId(Integer.parseInt(vetorString[0]));
-                aux.setTipoReceita(TipoReceita.valueOf(vetorString[1]));
+                aux.setTipoReceita(vetorString[1]);
                 aux.setNome(vetorString[2]);
-                aux.setDataDaCompra(UtilReceitaDespesa.stringToDateDataDaCompra(vetorString[3]));
-                aux.setCategoria(Integer.parseInt(vetorString[5]));
+                aux.setDataDaCompra(vetorString[3]);
+                aux.setCategoria(vetorString[4]);
                 aux.setParcelaAtual(Integer.parseInt(parcelas[0]));
                 aux.setParcela(Integer.parseInt(parcelas[1]));
-                aux.setValor(new BigDecimal(vetorString[7]));
-                aux.setTipoEntrada(TipoEntrada.valueOf(vetorString[8]));
-                aux.setRepetitivo(Boolean.parseBoolean(vetorString[9]));
+                aux.setValor(new BigDecimal(vetorString[6]));
+                aux.setTipoEntrada(vetorString[7]);
+                aux.setRepetitivo(Boolean.parseBoolean(vetorString[8]));
                 receitaDespesas.add(aux);
             }
             br.close();

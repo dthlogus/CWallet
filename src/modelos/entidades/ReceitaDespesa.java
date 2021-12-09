@@ -2,20 +2,17 @@ package modelos.entidades;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import modelos.enumerator.TipoEntrada;
-import modelos.enumerator.TipoReceita;
-import modelos.persistencia.CategoriaDaoImpl;
 
 public class ReceitaDespesa {
     private int id;
-    private TipoReceita tipoReceita;
+    private String tipoReceita;
     private String nome;
-    private Date dataDaCompra;
-    private Categoria categoria;
+    private String dataDaCompra;
+    private String categoria;
     private int parcela;
     private int parcelaAtual;
     private BigDecimal valor;
-    private TipoEntrada tipoEntrada;
+    private String tipoEntrada;
     private boolean repetitivo;
 
     public int getId() {
@@ -26,11 +23,11 @@ public class ReceitaDespesa {
         this.id = id;
     }
 
-    public TipoReceita getTipoReceita() {
+    public String getTipoReceita() {
         return tipoReceita;
     }
 
-    public void setTipoReceita(TipoReceita tipoReceita) {
+    public void setTipoReceita(String tipoReceita) {
         this.tipoReceita = tipoReceita;
     }
 
@@ -42,21 +39,20 @@ public class ReceitaDespesa {
         this.nome = nome;
     }
 
-    public Date getDataDaCompra() {
+    public String getDataDaCompra() {
         return dataDaCompra;
     }
 
-    public void setDataDaCompra(Date dataDaCompra) {
+    public void setDataDaCompra(String dataDaCompra) {
         this.dataDaCompra = dataDaCompra;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(int id) throws Exception {
-        CategoriaDaoImpl categoriaDao = new CategoriaDaoImpl();
-        this.categoria = categoriaDao.consultarPorId(id);
+    public void setCategoria(String categoria) throws Exception {
+        this.categoria = categoria;
     }
 
     public int getParcela() {
@@ -83,11 +79,11 @@ public class ReceitaDespesa {
         this.valor = valor;
     }
 
-    public TipoEntrada getTipoEntrada() {
+    public String getTipoEntrada() {
         return tipoEntrada;
     }
 
-    public void setTipoEntrada(TipoEntrada tipoEntrada) {
+    public void setTipoEntrada(String tipoEntrada) {
         this.tipoEntrada = tipoEntrada;
     }
 
@@ -101,9 +97,9 @@ public class ReceitaDespesa {
 
     @Override
     public String toString() {
-        return getId() + ";" + getTipoReceita().getDescricao() + ";" + getNome() + ";" + getDataDaCompra() + ";" 
-               + getCategoria().getId() +";"+
+        return getId() + ";" + getTipoReceita() + ";" + getNome() + ";" + getDataDaCompra() + ";" 
+               + getCategoria() +";"+
                getParcelaAtual() + "/" + getParcela() + ";" +
-               this.valor.toString() + ";" + getTipoEntrada().getDescricao() + ";" + isRepetitivo();
+               this.valor.toString() + ";" + getTipoEntrada() + ";" + isRepetitivo();
     }
 }

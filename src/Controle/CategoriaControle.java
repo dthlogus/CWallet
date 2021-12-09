@@ -29,7 +29,9 @@ public class CategoriaControle implements CategoriaDao {
     public void alterar(Categoria categoria) throws Exception {
         try {
             Categoria aux = categoriaDao.consultarPorId(categoria.getId());
-            if (categoria.getNome().isEmpty()) {
+            if (aux == null) {
+                throw new Exception("Não existe categoria com esse id");
+            } else if (categoria.getNome().isEmpty()) {
                 throw new Exception("A descrição tem que ser preenchida");
             } else {
                 categoriaDao.alterar(categoria);

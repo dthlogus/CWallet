@@ -27,13 +27,17 @@ public class ReceitaDespesaControle implements ReceitaDespesasDao{
     public void alterar(ReceitaDespesa receitaDespesas) throws Exception {
         try {
             ReceitaDespesa aux = receitaDao.consultarPorId(receitaDespesas.getId());
-            if(aux == null){
-                receitaDao.incluir(receitaDespesas);
+            if (aux == null) {
+                throw new Exception("Não existe categoria com esse id");
+            } else if (receitaDespesas.getNome().isEmpty()) {
+                throw new Exception("A descrição tem que ser preenchida");
+            } else {
+                receitaDao.alterar(receitaDespesas);
             }
         } catch (Exception erro) {
             throw erro;
         }
-        receitaDao.alterar(receitaDespesas);
+        
     }
 
     @Override
