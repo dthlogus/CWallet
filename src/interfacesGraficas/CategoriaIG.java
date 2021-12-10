@@ -5,7 +5,7 @@
  */
 package interfacesGraficas;
 
-import Controle.CategoriaControle;
+import controle.CategoriaControle;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +26,7 @@ public class CategoriaIG extends javax.swing.JFrame {
      */
     public CategoriaIG() {
         initComponents();
+        this.setLocationRelativeTo(null);
         try {
             mostrarListagem();
         } catch (Exception ex) {
@@ -47,7 +48,7 @@ public class CategoriaIG extends javax.swing.JFrame {
         jButtonIncluir = new javax.swing.JButton();
         Listar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jButtonSair = new javax.swing.JButton();
+        jButtonVoltar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         ConsultaPorId = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -103,14 +104,14 @@ public class CategoriaIG extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 180, -1));
 
-        jButtonSair.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonSair.setText("Sair");
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVoltar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+                jButtonVoltarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 180, -1));
+        jPanel1.add(jButtonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 180, -1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 51));
@@ -126,6 +127,7 @@ public class CategoriaIG extends javax.swing.JFrame {
         });
         jPanel1.add(ConsultaPorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 180, -1));
 
+        jPanel2.setBackground(new java.awt.Color(51, 153, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -267,10 +269,11 @@ public class CategoriaIG extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButtonSairActionPerformed
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        Inicial inicial = new Inicial();
+        inicial.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void ConsultaPorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaPorIdActionPerformed
         try {
@@ -341,7 +344,7 @@ public class CategoriaIG extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonIncluir;
-    private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

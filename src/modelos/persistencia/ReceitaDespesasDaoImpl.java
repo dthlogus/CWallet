@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 import modelos.entidades.ReceitaDespesa;
 import modelos.interfaces.ReceitaDespesasDao;
@@ -130,6 +131,7 @@ public class ReceitaDespesasDaoImpl implements ReceitaDespesasDao {
                 receitaDespesas.add(aux);
             }
             br.close();
+            Collections.sort(receitaDespesas);
             return receitaDespesas;
         } catch (Exception erro) {
             throw erro;

@@ -5,8 +5,8 @@
  */
 package interfacesGraficas;
 
-import Controle.CategoriaControle;
-import Controle.ReceitaDespesaControle;
+import controle.CategoriaControle;
+import controle.ReceitaDespesaControle;
 import java.util.ArrayList;
 import modelos.entidades.Categoria;
 import modelos.entidades.ReceitaDespesa;
@@ -31,12 +31,31 @@ public class ReceitaDespesaIG extends javax.swing.JFrame {
      */
     public ReceitaDespesaIG() {
         initComponents();
+        this.setLocationRelativeTo(null);
         try {
             mostrarListagem();
             limparTela();
             montarComboCategoria();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
+        }
+    }
+
+    private void validadorDeCampos() throws Exception {
+        if (jTextFieldId.getText().isEmpty() || jTextFieldId.getText() == " ") {
+            throw new Exception("Por favor preenchar o campo de ID");
+        }
+        if (jTextFieldDescricao.getText().isEmpty() || jTextFieldDescricao.getText() == " ") {
+            throw new Exception("Por favor preenchar o campo de Descrição");
+        }
+        if (jFormattedTextFieldDataCompra.getText().isEmpty() || jFormattedTextFieldDataCompra.getText() == " / ") {
+            throw new Exception("Por favor preenchar o campo de data da compra");
+        }
+        if (jTextFieldValor.getText().isEmpty() || jTextFieldValor.getText() == " ") {
+            throw new Exception("Por favor preenchar o campo de valor");
+        }
+        if (jFormattedTextFieldParcelas.getText().isEmpty() || jFormattedTextFieldParcelas.getText() == " / ") {
+            throw new Exception("Por favor preenchar o campo de parcelas");
         }
     }
 
@@ -107,7 +126,7 @@ public class ReceitaDespesaIG extends javax.swing.JFrame {
         ConsultaPorId = new javax.swing.JButton();
         Listar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jButtonSair = new javax.swing.JButton();
+        jButtonVoltar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -192,15 +211,16 @@ public class ReceitaDespesaIG extends javax.swing.JFrame {
         });
         jPanelLateralEsquerda.add(jButtonExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 180, -1));
 
-        jButtonSair.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButtonSair.setText("Sair");
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVoltar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButtonVoltar.setText("Voltar");
+        jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+                jButtonVoltarActionPerformed(evt);
             }
         });
-        jPanelLateralEsquerda.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 180, -1));
+        jPanelLateralEsquerda.add(jButtonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 180, -1));
 
+        jPanel2.setBackground(new java.awt.Color(51, 153, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -367,9 +387,7 @@ public class ReceitaDespesaIG extends javax.swing.JFrame {
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         try {
             ReceitaDespesa rd = new ReceitaDespesa();
-            if (jTextFieldId.getText().isEmpty() || jTextFieldId.getText() == " ") {
-                throw new Exception("Por favor preenchar o campo de ID");
-            }
+            validadorDeCampos();
             String[] parcelasSeparadas = jFormattedTextFieldParcelas.getText().split("/");
             rd.setId(Integer.parseInt(jTextFieldId.getText()));
             rd.setNome(jTextFieldDescricao.getText());
@@ -395,12 +413,7 @@ public class ReceitaDespesaIG extends javax.swing.JFrame {
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         try {
-            if (jTextFieldId.getText().isEmpty() || jTextFieldId.getText() == " ") {
-                throw new Exception("Por favor preenchar o campo de ID");
-            }
-            if (jTextFieldDescricao.getText().isEmpty() || jTextFieldDescricao.getText().equals("")) {
-                throw new Exception("Digite algum valor no campo de descrição, por favor.");
-            }
+            validadorDeCampos();
             String str = jTextFieldId.getText();
             int id = Integer.parseInt(str);
             ReceitaDespesa rdModificada = new ReceitaDespesa();
@@ -486,10 +499,11 @@ public class ReceitaDespesaIG extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButtonSairActionPerformed
+    private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
+        Inicial inicial = new Inicial();
+        inicial.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,7 +547,7 @@ public class ReceitaDespesaIG extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonIncluir;
-    private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton jButtonVoltar;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JComboBox<String> jComboBoxFormaPagamento;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataCompra;

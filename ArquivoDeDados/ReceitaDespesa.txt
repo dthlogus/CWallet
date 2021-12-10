@@ -1,2 +1,4 @@
-1;Cartao;teste;01/01;Compras;1/1;150;Receita;true
-2;Cartao;teste2;02/05;Carro;1/1;1000;Receita;false
+1;Cartao;teste1;01/02;Compras;1/1;150;Receita;true
+3;Cartao;teste3;02/05;Compras;1/3;167;Receita;true
+2;Cartao;teste;02/06;Carro;1/1;1999;Receita;false
+4;Conta;teste4;03/05;Moto;1/5;500;Custo;false

@@ -1,9 +1,8 @@
 package modelos.entidades;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-public class ReceitaDespesa {
+public class ReceitaDespesa implements  Comparable<ReceitaDespesa>{
     private int id;
     private String tipoReceita;
     private String nome;
@@ -101,5 +100,11 @@ public class ReceitaDespesa {
                + getCategoria() +";"+
                getParcelaAtual() + "/" + getParcela() + ";" +
                this.valor.toString() + ";" + getTipoEntrada() + ";" + isRepetitivo();
+    }
+
+    @Override
+    public int compareTo(ReceitaDespesa receitaDespesa) {
+        int idComparador = ((ReceitaDespesa) receitaDespesa).getId();
+        return this.id - idComparador;
     }
 }
